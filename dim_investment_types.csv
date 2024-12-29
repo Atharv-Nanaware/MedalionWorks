@@ -1,0 +1,6 @@
+investment_type_id|investment_type_name
+1|GuessInvestment
+2|DoctorInvestment
+3|MachineInvestment
+4|ProfessionalInvestment
+5|HospitalInvestment
