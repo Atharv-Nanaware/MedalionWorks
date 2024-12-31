@@ -1,4 +1,3 @@
 # MedalionWorks
 
 
-sqlPassword1$
