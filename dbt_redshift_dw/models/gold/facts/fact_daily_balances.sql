@@ -2,15 +2,11 @@
     config(
         materialized='view',
         alias='fact_daily_balances',
-        schema=var('gold_schema'),
-        unique_key='balance_id',
-        incremental_stragey='delete+insert',
-        primary_key='balance_id',
-        distribution='even'
+        schema=var('gold_schema')
     )
 }}
 
-WITH source_data as (
+WITH source_data AS (
     SELECT
         balance_id,
         date_id,
@@ -19,13 +15,13 @@ WITH source_data as (
         opening_balance,
         closing_balance,
         average_balance
-        FROM {{ ref('stg_fact_daily_balances') }}
+    FROM {{ ref('stg_fact_daily_balances') }}
 )
 
 SELECT
     s.date_id,
     s.balance_id,
-    d.date as balance_date,
+    d.date AS balance_date,
     s.account_id,
     a.account_number,
     a.account_type,
@@ -36,7 +32,6 @@ SELECT
     s.closing_balance,
     s.average_balance
 FROM source_data s
-INNER JOIN {{ ref('dim_date') }} as d on s.date_id = d.date_id
-INNER JOIN {{ ref('dim_account') }} as a on s.account_id = a.account_id
-INNER JOIN {{ ref('dim_currency') }} as c on s.currency_id = c.currency_id
-
+INNER JOIN {{ ref('dim_date') }} AS d ON s.date_id = d.date_id
+INNER JOIN {{ ref('dim_account') }} AS a ON s.account_id = a.account_id
+INNER JOIN {{ ref('dim_currency') }} AS c ON s.currency_id = c.currency_id
