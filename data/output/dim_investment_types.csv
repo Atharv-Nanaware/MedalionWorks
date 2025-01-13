@@ -1,0 +1,6 @@
+investment_type_id|investment_type_name
+1|ExistInvestment
+2|PaperInvestment
+3|ProtectInvestment
+4|TrueInvestment
+5|RaiseInvestment
