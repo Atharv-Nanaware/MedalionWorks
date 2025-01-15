@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: dim_loans
+    description: "A dimension table for loans, including details like loan type, loan amount, and interest rate."
+    columns:
+      - name: loan_id
+        description: "The primary key for the loan dimension."
+        tests:
+          - unique
+          - not_null
+
+      - name: loan_type
+        description: "The type of the loan ."
+        tests:
+          - not_null
+
+      - name: loan_amount
+        description: "The amount of the loan."
+        tests:
+          - not_null
+
+      - name: interest_rate
+        description: "The interest rate applied to the loan."
+        tests:
+          - not_null
+
+      - name: created_at
+        description: "The date the loan record was created."
+        tests:
+          - not_null

@@ -1,0 +1,50 @@
+version: 2
+
+models:
+  - name: dim_account
+    description: "A dimension table for accounts, providing details about individual accounts and their associated customers."
+    columns:
+      - name: account_id
+        description: "The primary key for the account dimension."
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: "Foreign key to the customer dimension."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customer')
+              field: customer_id
+
+      - name: account_number
+        description: "The account number, which is unique for each account."
+        tests:
+          - unique
+          - not_null
+          - accepted_values:
+              values: ['Savings', 'Checking', 'Credit', 'Loan']  # Example values; update based on your data
+
+      - name: account_type
+        description: "The type of account (e.g., Savings, Checking, Credit)."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Savings', 'Checking', 'Credit', 'Loan']  # Example values; update as needed
+
+      - name: account_balance
+        description: "The balance of the account in monetary terms."
+        tests:
+          - not_null
+
+      - name: credit_score
+        description: "The credit score associated with the account."
+        tests:
+          - not_null
+
+      - name: created_at
+        description: "The date and time when the account was created."
+        tests:
+          - not_null
+

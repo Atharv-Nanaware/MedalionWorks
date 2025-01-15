@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: dim_investment_type
+    description: "A dimension table for investment types, including the investment type ID and name."
+    columns:
+      - name: investment_type_id
+        description: "The primary key for the investment type dimension."
+        tests:
+          - unique
+          - not_null
+
+      - name: investment_type_name
+        description: "The name of the investment type (e.g., Stocks, Bonds, Mutual Funds)."
+        tests:
+          - not_null
+
+      - name: created_at
+        description: "The date when the investment type was created."
+        tests:
+          - not_null

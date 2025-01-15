@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: dim_dates
+    description: "A dimension table containing date information. This includes day, month, year, and weekday for each date."
+    columns:
+      - name: date_id
+        description: "The unique identifier for each date entry."
+        tests:
+          - not_null
+          - unique
+
+      - name: date
+        description: "The date value in the format YYYY-MM-DD."
+        tests:
+          - not_null
+
+      - name: day
+        description: "The day of the month (1-31)."
+        tests:
+          - not_null
+
+
+      - name: month
+        description: "The month of the year (1-12)."
+        tests:
+          - not_null
+
+
+      - name: year
+        description: "The year of the date."
+        tests:
+          - not_null
+
+
+      - name: weekday
+        description: "The day of the week (0-6), where 0 is Sunday and 6 is Saturday."
+        tests:
+          - not_null
+
+
+      - name: created_at
+        description: "The timestamp when the date record was created."
+        tests:
+          - not_null
+

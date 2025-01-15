@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: dim_currency
+    description: "A dimension table containing details about currencies, including their codes and names."
+    columns:
+      - name: currency_id
+        description: "The unique identifier for each currency."
+        tests:
+          - unique
+          - not_null
+
+      - name: currency_code
+        description: "The ISO 4217 currency code in uppercase (e.g., 'USD', 'EUR')."
+        tests:
+          - not_null
+          - unique
+          - accepted_values:
+              values: ['USD', 'EUR', 'GBP', 'INR', 'JPY', 'CNY']  # Example values; update based on supported currencies
+
+      - name: currency_name
+        description: "The name of the currency, with each word capitalized (e.g., 'United States Dollar')."
+        tests:
+          - not_null
+
+      - name: created_at
+        description: "The date and time when the currency record was created."
+        tests:
+          - not_null
+

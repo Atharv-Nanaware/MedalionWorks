@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: dim_channel
+    description: "A dimension table for channels, providing details about communication or distribution channels."
+    columns:
+      - name: channel_id
+        description: "The primary key for the channel dimension."
+        tests:
+          - unique
+          - not_null
+
+      - name: channel_name
+        description: "The name of the channel, which should be unique and descriptive (e.g., 'Online', 'In-Store')."
+        tests:
+          - not_null
+          - unique
+          - accepted_values:
+              values: ['Online', 'In-Store', 'Mobile', 'Call Center']  # Example values; update based on actual data
+
+      - name: created_at
+        description: "The date and time when the channel was created."
+        tests:
+          - not_null
+
